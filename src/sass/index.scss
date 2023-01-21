@@ -1,0 +1,26 @@
+@import './config/variables';
+@import './components/card';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $font-roboto;
+  background-color: rgba($dark, 0.06);
+}
+
+.App {
+  display: flex;
+  width: 80%;
+  margin: 1rem auto;
+
+  .filters {
+    border: 1px solid #eee;
+    width: 30%;
+  }
+
+  .cards {
+    width: 70%;
+    margin-left: 1rem;
+  }
+}
