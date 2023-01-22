@@ -47,6 +47,10 @@
             background-color: $white;
             cursor: pointer;
             box-shadow: 0 0 6px rgba($dark, 0.6);
+            
+            .heart-fill {
+                color: $coral;
+            }
         }
     }
 

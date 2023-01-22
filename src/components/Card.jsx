@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { FavoritesContext } from "../contexts/FavoritesContext";
 import { RxCounterClockwiseClock } from "react-icons/rx";
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
 dayjs.extend(customParseFormat);
 
 const Card = ({ posting }) => {
   const {
+    posting_id,
     posting_location,
     posting_prices,
     publication_plan,
@@ -16,6 +18,38 @@ const Card = ({ posting }) => {
     posting_slug,
     posting_description,
   } = posting;
+  const { favorites, setFavorites } = useContext(FavoritesContext);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+
+    const indexFavorite = favorites.findIndex(
+      (favorite) => favorite.posting_id === posting_id
+    );
+    if (indexFavorite === -1) {
+      setFavorites([...favorites, posting]);
+      return;
+    }
+
+    setFavorites(
+      favorites.filter((favorite) => favorite.posting_id !== posting_id)
+    );
+  };
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+
+    const favoritesStored = JSON.parse(localStorage.getItem("favorites"));
+    if (favoritesStored) {
+      const indexFavorite = favoritesStored.findIndex(
+        (favorite) => favorite.posting_id === posting_id
+      );
+      if (indexFavorite !== -1) {
+        setIsFavorite(true);
+      }
+    }
+  }, [favorites, posting_id]);
 
   const price = new Intl.NumberFormat("es-AR", {
     style: "currency",
@@ -61,8 +95,8 @@ const Card = ({ posting }) => {
           {expenses && <div className="expenses">{expenses}</div>}
         </div>
         <span>{publicationPlan.name}</span>
-        <div className="btn-favorite">
-          <FaRegHeart />
+        <div className="btn-favorite" onClick={handleFavorite}>
+          {isFavorite ? <FaHeart className="heart-fill" /> : <FaRegHeart />}
         </div>
       </div>
       <div className="card-body">

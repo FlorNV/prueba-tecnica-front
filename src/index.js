@@ -4,12 +4,15 @@ import "./sass/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { PostingsProvider } from "./contexts/PostingsContext";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <PostingsProvider>
-      <App />
+      <FavoritesProvider>
+        <App />
+      </FavoritesProvider>
     </PostingsProvider>
   </React.StrictMode>
 );
