@@ -1,10 +1,9 @@
-import React from "react";
-import { useState } from "react";
-import { postings as postingsList } from "../mockedPostings";
+import React, { useContext } from "react";
+import { PostingsContext } from "../contexts/PostingsContext";
 import Card from "./Card";
 
 const Cards = () => {
-  const [postings, setPostings] = useState(postingsList);
+  const { postings } = useContext(PostingsContext);
 
   return (
     <div className="cards">

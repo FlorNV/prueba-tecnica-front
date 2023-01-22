@@ -18,7 +18,10 @@ export const postings = [
         expenses: { amount: 3500, currency: "ARS" }, //expensas y moneda
       },
     ],
-    operation_type: { operation_type_id: 1, operation_type_name: "Alquiler" }, //tipo de operacion id y nombre
+    operation_type: {
+      operation_type_id: 1,
+      operation_type_name: "Alquiler",
+    }, //tipo de operacion id y nombre
     publication_plan: "SIMPLE", //tipo del plan de publicacion
     publish_date: "23/01/2020", // fecha de publicacion
     posting_status: { status: "AVAILABLE", label: "Disponible" }, //estado del aviso ( AVAILABLE : disponible, RESERVED: reservado, FINALIZED: finalizado)
@@ -43,10 +46,16 @@ export const postings = [
         expenses: { amount: 3000, currency: "ARS" },
       },
     ],
-    operation_type: { operation_type_id: 2, operation_type_name: "Venta" },
+    operation_type: {
+      operation_type_id: 2,
+      operation_type_name: "Venta",
+    },
     publication_plan: "SUPERHIGHLIGHTED",
     publish_date: "18/07/2019",
-    posting_status: { status: "AVAILABLE", label: "Disponible" },
+    posting_status: {
+      status: "AVAILABLE",
+      label: "Disponible",
+    },
     title:
       "Dueño San Lorenzo/Güemes. LC  2 d, a balcón terraza a jardín. A nvo. cochera",
     posting_picture:
