@@ -4,6 +4,8 @@ import { RxCounterClockwiseClock } from "react-icons/rx";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import dayjs from "dayjs";
+import Modal from "./Modal";
+import ContactForm from "./ContactForm";
 dayjs.extend(customParseFormat);
 
 const Card = ({ posting }) => {
@@ -20,6 +22,7 @@ const Card = ({ posting }) => {
   } = posting;
   const { favorites, setFavorites } = useContext(FavoritesContext);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleFavorite = () => {
     setIsFavorite(!isFavorite);
@@ -114,9 +117,15 @@ const Card = ({ posting }) => {
             </div>
             <div>Publicado hace {diff} días</div>
           </div>
-          <a href={`/${posting_slug}`} className="card-link">
+          {/* <a href={`/${posting_slug}`} className="card-link">
             Contactar
-          </a>
+          </a> */}
+          <button className="btn-card" onClick={() => setShow(true)}>
+            Contactar
+          </button>
+          <Modal setShow={setShow} show={show} title={"Formulario de contacto"}>
+            {<ContactForm cardTitle={title} setShow={setShow} />}
+          </Modal>
         </div>
       </div>
     </div>

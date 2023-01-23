@@ -42,16 +42,16 @@
             justify-content: center;
             margin-bottom: 0.5rem;
             
-            .form-control, .btn-search {
-                display: block;
-                border-radius: 0.4rem;
-                border: 1px solid rgb($dark, 0.1);
-                box-shadow: 0 0 2px 1px rgb($dark, 0.05);
-            }
+            // .form-control, .btn-search {
+            //     display: block;
+            //     border-radius: 0.4rem;
+            //     border: 1px solid rgb($dark, 0.1);
+            //     box-shadow: 0 0 2px 1px rgb($dark, 0.05);
+            // }
 
             .form-control {
                 flex-grow: 1;
-                padding: 0.5rem 0.8rem;
+                // padding: 0.5rem 0.8rem;
                 margin-right: 0.4rem;
             }
 
@@ -64,6 +64,21 @@
     }
 }
 
+.form-control, .btn-search {
+    display: block;
+    border-radius: 0.4rem;
+    border: 1px solid rgb($dark, 0.1);
+    box-shadow: 0 0 2px 1px rgb($dark, 0.05);
+}
+
+.form-control {
+    padding: 0.5rem 0.8rem;
+
+    &:focus {
+        outline: none;
+    }
+}
+
 .form-label {
     display: block;
     margin-top: 10px;
@@ -72,4 +87,57 @@
 
 .form-radio {
     margin-right: 6px;
+}
+
+.contact-form {
+    h3 {
+        margin-top: 0;
+        font-weight: 500;
+    }
+
+    .form-control {
+        box-sizing: border-box;
+        margin-bottom: 0.6rem;
+        width: 100%;
+    }
+
+    // TODO: aplicar mixins
+    .btn {
+        width: 100%;
+        padding: 0.8rem;
+        margin: 0.8rem 0 0.4rem;
+        border-radius: 0.4rem;
+        background-color: $purple;
+        border: none;
+        color: $white;
+        font-size: 1rem;
+        cursor: pointer;
+        
+        &:hover {
+            background-color: rgba($purple, 0.8);
+        }
+    }
+}
+
+.alert {
+    background: $green;
+    color: $white;
+    padding: 1rem;
+    // margin: 1rem 0;
+    border-radius: 0.4rem;
+    text-align: center;
+    
+    .icon {
+        vertical-align: bottom;
+        font-size: 1.4rem;
+        margin-right: 0.4rem;
+    }
+}
+
+.error-label {
+    margin: 0;
+    margin-bottom: 1rem;
+    margin-left: 0.8rem;
+    font-size: 0.8rem;
+    color: $coral;
 }

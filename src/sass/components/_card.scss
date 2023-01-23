@@ -51,6 +51,10 @@
             .heart-fill {
                 color: $coral;
             }
+
+            &:hover {
+                background-color: rgba($white, 0.8);
+            }
         }
     }
 
@@ -111,6 +115,19 @@
                 background-color: $orange;
                 text-decoration: none;
                 color: $white;
+            }
+
+            .btn-card {
+                padding: 0.4rem 0.8rem;
+                border-radius: 0.4rem;
+                background-color: $orange;
+                border: none;
+                color: $white;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba($orange, 0.8);
+                }
             }
         }
     }

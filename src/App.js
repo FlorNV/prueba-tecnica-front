@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Cards from "./components/Cards";
 import Filters from "./components/Filters";
+import Modal from "./components/Modal";
 import { FavoritesContext } from "./contexts/FavoritesContext";
 import { PostingsContext } from "./contexts/PostingsContext";
 import { postings as postingsList } from "./mockedPostings";
