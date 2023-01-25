@@ -54,6 +54,12 @@ const ContactForm = ({ postingId, cardTitle, setShow }) => {
     const validations = validate();
     setErrors(validations);
     setIsSubmit(true);
+
+    if (isSubmit && errors.isValid) {
+      setErrors({ name: "", phone: "", email: "", isValid: false });
+      setData({ name: "", phone: "", email: "" });
+      setIsSubmit(false);
+    }
   };
 
   useEffect(() => {
@@ -92,13 +98,13 @@ const ContactForm = ({ postingId, cardTitle, setShow }) => {
           value={email}
           onChange={handleChange}
         />
+        {errors.email && <p className="error-label">{errors.email}</p>}
         {errors.isValid && isSubmit && (
           <div className="alert">
             <BsCheckCircle className="icon" />
             Datos enviados con éxito
           </div>
         )}
-        {errors.email && <p className="error-label">{errors.email}</p>}
         {errors.isValid && isSubmit ? (
           <button className="btn" onClick={() => setShow(false)}>
             Aceptar

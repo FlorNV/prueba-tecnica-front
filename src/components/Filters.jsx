@@ -46,7 +46,7 @@ const Filters = () => {
   return (
     <div className="filters">
       <div>
-        <span>Filtrado actual</span>
+        <h3>Filtrado actual</h3>
       </div>
       <div className="menu">
         <button
