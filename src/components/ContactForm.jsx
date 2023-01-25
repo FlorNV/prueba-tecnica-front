@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsCheckCircle } from "react-icons/bs";
 
-const ContactForm = ({ cardTitle, setShow }) => {
+const ContactForm = ({ postingId, cardTitle, setShow }) => {
   const [data, setData] = useState({ name: "", phone: "", email: "" });
   const [errors, setErrors] = useState({
     name: "",
     phone: "",
     email: "",
-    isValid: true,
+    isValid: false,
   });
   const [isSubmit, setIsSubmit] = useState(false);
   const { name, phone, email } = data;
@@ -22,6 +22,7 @@ const ContactForm = ({ cardTitle, setShow }) => {
   const validate = () => {
     const validations = { name: "", phone: "", email: "", isValid: true };
     const regex = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]/);
+    const emailStored = localStorage.getItem(postingId);
 
     if (!name) {
       validations.name = "El nombre es requerido";
@@ -39,6 +40,9 @@ const ContactForm = ({ cardTitle, setShow }) => {
     } else if (!regex.test(email)) {
       validations.email = "El formato del email es incorrecto";
       validations.isValid = false;
+    } else if (emailStored && emailStored === email) {
+      validations.email = "Este email ya se ha utilizado";
+      validations.isValid = false;
     }
 
     return validations;
@@ -52,9 +56,11 @@ const ContactForm = ({ cardTitle, setShow }) => {
     setIsSubmit(true);
   };
 
-  const handleClose = () => {
-    setShow(false);
-  };
+  useEffect(() => {
+    if (errors.isValid) {
+      localStorage.setItem(postingId, email);
+    }
+  }, [errors, email, postingId]);
 
   return (
     <div>
@@ -94,7 +100,7 @@ const ContactForm = ({ cardTitle, setShow }) => {
         )}
         {errors.email && <p className="error-label">{errors.email}</p>}
         {errors.isValid && isSubmit ? (
-          <button className="btn" onClick={handleClose}>
+          <button className="btn" onClick={() => setShow(false)}>
             Aceptar
           </button>
         ) : (

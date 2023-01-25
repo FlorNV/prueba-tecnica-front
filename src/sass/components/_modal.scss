@@ -16,19 +16,20 @@
     .modal-content {
         width: 500px;
         background-color: $white;
-        border-radius: 0.4rem;
+        border-radius: 1rem;
     }
 
-    .modal-header, .modal-footer {
-        padding: 10px;
+    .modal-header{
+        padding: 1rem;
     }
-
+    
     .modal-title {
         margin: 0;
     }
 
     .modal-body {
-        padding: 10px;
+        margin: 0 1rem;
+        padding: 1rem 0;
         border-top: 1px solid rgba($dark, 0.1);
         border-bottom: 1px solid rgba($dark, 0.1);
     }
@@ -38,16 +39,25 @@
         pointer-events: visible;
     }
 
-    .modal-footer .btn {
-        padding: 0.4rem 0.8rem;
-        border-radius: 0.4rem;
-        background-color: $coral;
-        border: none;
-        color: $white;
-        cursor: pointer;
-        
-        &:hover {
-            background-color: rgba($coral, 0.8);
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+
+        button.btn {
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+
+            .icon {
+                color: rgba($dark, 0.8);
+                font-size: 1rem;
+
+                &:hover {
+                    color: rgba($dark, 0.4);
+                }
+            }
+
         }
+        
     }
 }

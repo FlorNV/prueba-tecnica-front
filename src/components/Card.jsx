@@ -17,7 +17,6 @@ const Card = ({ posting }) => {
     publish_date,
     title,
     posting_picture,
-    posting_slug,
     posting_description,
   } = posting;
   const { favorites, setFavorites } = useContext(FavoritesContext);
@@ -57,12 +56,14 @@ const Card = ({ posting }) => {
   const price = new Intl.NumberFormat("es-AR", {
     style: "currency",
     currency: posting_prices[0].price.currency,
+    maximumFractionDigits: 0,
   }).format(posting_prices[0].price.amount);
 
   const expenses = posting_prices[0].expenses
     ? `+ ${new Intl.NumberFormat("es-AR", {
         style: "currency",
         currency: posting_prices[0].expenses.currency,
+        maximumFractionDigits: 0,
       }).format(posting_prices[0].expenses.amount)} Expensas`
     : null;
 
@@ -117,14 +118,17 @@ const Card = ({ posting }) => {
             </div>
             <div>Publicado hace {diff} días</div>
           </div>
-          {/* <a href={`/${posting_slug}`} className="card-link">
-            Contactar
-          </a> */}
           <button className="btn-card" onClick={() => setShow(true)}>
             Contactar
           </button>
           <Modal setShow={setShow} show={show} title={"Formulario de contacto"}>
-            {<ContactForm cardTitle={title} setShow={setShow} />}
+            {
+              <ContactForm
+                postingId={posting_id}
+                cardTitle={title}
+                setShow={setShow}
+              />
+            }
           </Modal>
         </div>
       </div>
